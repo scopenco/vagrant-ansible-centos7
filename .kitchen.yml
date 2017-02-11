@@ -1,0 +1,23 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: ansible_playbook
+  hosts: all
+  playbook: ansible/playbook.yml
+  roles_path: ansible/roles
+  requirements_path: ansible/requirements.yml
+  ansible_verbose: true
+  ansible_version: latest
+  require_chef_for_busser: true
+
+platforms:
+  - name: centos-7.2
+
+suites:
+  - name: default
+    driver:
+      synced_folders:
+        - ["./src", "/opt/src"]
+        - ["~/", "/opt/Home"]
